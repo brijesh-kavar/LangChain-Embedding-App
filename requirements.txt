@@ -2,3 +2,4 @@ langchain_community
 langchain
 requests
 faiss-cpu
+tiktoken

@@ -4,4 +4,3 @@ requests
 faiss-cpu
 tiktoken
 ollama
-ollama mistral

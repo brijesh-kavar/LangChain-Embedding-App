@@ -4,4 +4,4 @@ requests
 faiss-cpu
 tiktoken
 ollama
-pickle
+pickle5

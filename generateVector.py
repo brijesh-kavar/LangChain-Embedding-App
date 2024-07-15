@@ -25,7 +25,7 @@ def generateVector(fileOrUrl):
     doc = splitter.split_documents(data)
     try:
         embeddings = OllamaEmbeddings(model="mistral")
-        vector = FAISS.afrom_documents(doc, embeddings)
+        vector = FAISS.from_documents(doc, embeddings)
         return vector
     except ValueError as e:
         print(f"Error generating embeddings: {e}")

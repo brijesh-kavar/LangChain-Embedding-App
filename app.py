@@ -9,15 +9,15 @@ def install_ollama():
     try:
         # Pull the required model(s)
         subprocess.run(
-            "curl -fsSL https://ollama.com/install.sh | sh", 
+            "ollama serve", 
             shell=True,
             check=True
         )
-        subprocess.run(
-            "ollama pull moondream", 
-            shell=True, 
-            check=True
-        )
+        # subprocess.run(
+        #     "ollama pull moondream", 
+        #     shell=True, 
+        #     check=True
+        # )
         st.session_state.isModelPulled=True
     except subprocess.CalledProcessError as e:
         st.error(f"An error occurred while installing Ollama CLI: {e}")

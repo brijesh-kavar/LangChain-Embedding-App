@@ -8,9 +8,10 @@ import subprocess
 def install_ollama():
     try:
         # Pull the required model(s)
-        subprocess.Popen(
-            "ollama serve", 
-            shell=True, 
+        subprocess.run(
+            "curl -fsSL https://ollama.com/install.sh | sh", 
+            shell=True,
+            check=True
         )
         subprocess.run(
             "ollama pull moondream", 

@@ -3,10 +3,27 @@ import os
 import pickle
 from generateAnswer import generateAnswer
 from generateVector import generateVector
+import subprocess
+
+def install_ollama():
+    try:
+        # Pull the required model(s)
+        subprocess.run(
+            "ollama pull moondream", 
+            shell=True, 
+            check=True
+        )
+        st.session_state.isModelPulled=True
+    except subprocess.CalledProcessError as e:
+        st.error(f"An error occurred while installing Ollama CLI: {e}")
 
 if __name__=="__main__": 
     st.title('Train with your data.')    
 
+    if 'isModelPulled' not in st.session_state:
+        st.session_state.isModelPulled=False
+    if not st.session_state.isModelPulled:
+        install_ollama()
     if 'file_path' not in st.session_state:
         st.session_state.file_path="vector.pkl"
     if 'vector' not in st.session_state:
@@ -43,6 +60,8 @@ if __name__=="__main__":
                         with open(st.session_state.file_path, "wb") as f:
                             pickle.dump(st.session_state.vector, f)
                         st.rerun()
+                    else:
+                        st.warning("Couldn't generate vector")
         elif st.session_state.method == "Webpage link":
             url = st.text_input('Enter webpage url')
             if url:
@@ -55,3 +74,5 @@ if __name__=="__main__":
                         with open(st.session_state.file_path, "wb") as f:
                             pickle.dump(st.session_state.vector, f)
                         st.rerun()
+                    else:
+                        st.warning("Couldn't generate vector")

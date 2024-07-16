@@ -10,7 +10,7 @@ def generateAnswer(question, retriever):
     """
     prompt = PromptTemplate(input_variables=["context", "question"],template=template)
     chain = RetrievalQA.from_chain_type(
-        llm=Ollama(model="mistral"),
+        llm=Ollama(model="moondream"),
         chain_type="stuff",
         retriever= retriever,
         input_key="query",

@@ -36,18 +36,22 @@ if __name__=="__main__":
             if file:
                 clicked = st.button('Generate vector', type="primary")
                 if clicked:
-                    st.session_state.vector = generateVector(file)
-                    # create a file
-                    with open(st.session_state.file_path, "wb") as f:
-                        pickle.dump(st.session_state.vector, f)
-                    st.rerun()
+                    vector = generateVector(file)
+                    if vector:
+                        st.session_state.vector = vector
+                        # create a file
+                        with open(st.session_state.file_path, "wb") as f:
+                            pickle.dump(st.session_state.vector, f)
+                        st.rerun()
         elif st.session_state.method == "Webpage link":
             url = st.text_input('Enter webpage url')
             if url:
                 clicked = st.button('Generate vector', type="primary")
                 if clicked: 
-                    st.session_state.vector = generateVector(url)
-                    # create a file
-                    with open(st.session_state.file_path, "wb") as f:
-                        pickle.dump(st.session_state.vector, f)
-                    st.rerun()
+                    vector = generateVector(url)
+                    if vector:
+                        st.session_state.vector = vector
+                        # create a file
+                        with open(st.session_state.file_path, "wb") as f:
+                            pickle.dump(st.session_state.vector, f)
+                        st.rerun()

@@ -23,12 +23,10 @@ def generateVector(fileOrUrl):
 
     splitter = RecursiveCharacterTextSplitter(separators=["\n\n", "\n", "."], chunk_size=1000, chunk_overlap=200)
     doc = splitter.split_documents(data)
+    embeddings = OllamaEmbeddings(model="moondream")
     try:
-        embeddings = OllamaEmbeddings(model="mistral")
         vector = FAISS.from_documents(doc, embeddings)
         return vector
     except ValueError as e:
         print(f"Error generating embeddings: {e}")
         return None
-
-

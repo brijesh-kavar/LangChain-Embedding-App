@@ -8,6 +8,10 @@ import subprocess
 def install_ollama():
     try:
         # Pull the required model(s)
+        subprocess.Popen(
+            "ollama serve", 
+            shell=True, 
+        )
         subprocess.run(
             "ollama pull moondream", 
             shell=True, 
